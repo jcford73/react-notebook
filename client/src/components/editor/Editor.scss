@@ -1,0 +1,25 @@
+.editor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: auto;
+    font-family: monospace;
+    // min-height: 100vh;
+    // .editor-saved-message {
+    //     position: absolute;
+    //     top: 0;
+    //     left: 0.5rem;
+    //     opacity: 0;
+    //     &.saved {
+    //         opacity: 1;
+    //         transition: opacity 0s;
+    //     }
+    //     transition: opacity 0.5s;
+    // }
+    outline: none;
+    padding: 0 1rem;
+    // position: relative;
+    // width: 100%;
+}

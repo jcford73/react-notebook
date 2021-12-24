@@ -1,0 +1,63 @@
+.drawer-container {
+    .drawer {
+        .close-button {
+            display: none;
+            cursor: pointer;
+        }
+    }
+}
+.notebook-expanded {
+    .drawer {
+        background-color: #ffffff;
+    }
+    .drawer-container.open {
+        .close-button {
+            display: unset;
+            position: absolute;
+            top: 0.5em;
+            right: 0.5em;
+            border: none;
+            background-color: transparent;
+        }
+    }
+    .drawer-container.open,
+    .drawer-container:focus-within {
+        position: fixed;
+        background-color: #00000077;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+
+        .drawer {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+
+            #noteList {
+                height: 100%;
+            }
+        }
+    }
+}
+
+#noteList {
+    padding: 0.5rem;
+    h2 {
+        margin: 0;
+    }
+    nav {
+        display: flex;
+        flex-direction: column;
+        a {
+            color: black;
+            text-decoration: none;
+            padding: 0.5rem 0 0 0;
+            // white-space: nowrap;
+            &.active {
+                font-weight: bold;
+            }
+        }
+    }
+}

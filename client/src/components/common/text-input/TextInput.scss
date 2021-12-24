@@ -1,0 +1,15 @@
+@mixin form-element-component {
+}
+
+@mixin form-element-wrapper {
+  input {
+    // border: 1px solid gray;
+  }
+}
+
+.text-input-component {
+  @include form-element-component;
+  .text-input-wrapper {
+    @include form-element-wrapper;
+  }
+}

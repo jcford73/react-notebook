@@ -1,0 +1,15 @@
+body {
+    margin: 0;
+}
+
+@keyframes spinner-fadein {
+    from {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}

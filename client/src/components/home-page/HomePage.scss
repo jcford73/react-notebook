@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
+.home-page {
+    --wh: 0.98181818181818181818181818181818;
+    --hw: 1.0182648401826484018264840182648;
+    position: relative;
+    height: 100vh;
+    background: no-repeat center/contain url(./notebook.png);
+    font-family: "Shadows Into Light", cursive;
+    font-size: calc(min(12vh, 12vw / var(--wh)) / 2);
+    font-weight: bold;
+    overflow: hidden;
+    &::before {
+        content: "This Notebook Belongs To";
+        position: absolute;
+
+        --nb-offset-y: 0.04;
+        --min-y: var(--nb-offset-y) * 100vh;
+        --max-y: 50vh - 50vw * var(--hw) + var(--nb-offset-y) * 100vw * var(--hw);
+        top: calc(max(var(--min-y), var(--max-y)));
+
+        --nb-offset-x: 0.15;
+        --max-x: calc(50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh)));
+        --min-x: calc(var(--nb-offset-x) * 100vw);
+        left: calc(max(var(--min-x), var(--max-x)));
+
+        width: 14em;
+
+        transform: rotateZ(-4deg);
+    }
+    .login-container {
+        position: absolute;
+
+        --nb-offset-y: 0.19;
+        --min-y: var(--nb-offset-y) * 100vh;
+        --max-y: 50vh - 50vw * var(--hw) + var(--nb-offset-y) * 100vw * var(--hw);
+        top: calc(max(var(--min-y), var(--max-y)));
+
+        --nb-offset-x: 0.24;
+        --max-x: calc(50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh)));
+        --min-x: calc(var(--nb-offset-x) * 100vw);
+        left: calc(max(var(--min-x), var(--max-x)));
+
+        --nb-width: 0.5;
+        --max-w: calc(var(--nb-width) * 100vh * var(--wh));
+        --min-w: calc(var(--nb-width) * 100vw);
+        width: min(var(--max-w), var(--min-w));
+        transform: rotateZ(-4deg);
+    }
+    img {
+        position: absolute;
+        opacity: 0.9;
+
+        --nb-offset-y: 0.05;
+        --min-y: var(--nb-offset-y) * 100vh;
+        --max-y: 50vh - 50vw * var(--hw) + var(--nb-offset-y) * 100vw * var(--hw);
+        bottom: calc(max(var(--min-y), var(--max-y)));
+
+        --nb-offset-x: 0.14;
+        --max-x: calc(50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh)));
+        --min-x: calc(var(--nb-offset-x) * 100vw);
+        left: calc(max(var(--min-x), var(--max-x)));
+
+        --nb-width: 0.5;
+        --max-w: calc(var(--nb-width) * 100vh * var(--wh));
+        --min-w: calc(var(--nb-width) * 100vw);
+        width: min(var(--max-w), var(--min-w));
+        transform: rotateZ(-4deg);
+
+        --nb-height: 0.4;
+        --max-h: calc(var(--nb-height) * 100vh * var(--h));
+        --min-h: calc(var(--nb-height) * 100vw);
+        height: min(var(--max-h), var(--min-h));
+        transform: rotateZ(-4deg);
+    }
+}

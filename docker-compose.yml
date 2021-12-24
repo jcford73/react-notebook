@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+    db:
+        container_name: postgres
+        image: postgres:13
+        restart: always
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+        ports:
+            - "5432:5432"
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4
+        restart: always
+        environment:
+            PGADMIN_DEFAULT_EMAIL: johncford@gmail.com
+            PGADMIN_DEFAULT_PASSWORD: root
+        ports:
+            - "8888:80"
+    redis:
+        container_name: redis
+        image: redis
+        restart: always
+        ports:
+            - "6379:6379"

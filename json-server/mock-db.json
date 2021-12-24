@@ -1,0 +1,29 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "johncford@gmail.com",
+      "password": "Test@1234",
+      "notes": [
+        {
+          "id": 1,
+          "title": "My First Note",
+          "description": "This is a cool application",
+          "text": "This is a test note. Woohoo!"
+        },
+        {
+          "id": 2,
+          "title": "My Second Note",
+          "description": "",
+          "text": "The quick brown fox jumps over the lazy dog."
+        },
+        {
+          "id": 3,
+          "title": "Note #3",
+          "description": "blah blah",
+          "text": "I could do this all day!"
+        }
+      ]
+    }
+  ]
+}

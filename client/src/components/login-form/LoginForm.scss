@@ -1,0 +1,110 @@
+.login-form {
+    display: flex;
+    flex-direction: column;
+    font-size: 60%;
+    label {
+        display: block;
+        height: 1em;
+        margin: 0 0 0.35em 0;
+        padding: 0;
+        font-weight: bold;
+        color: blue;
+    }
+    input {
+        width: 100%;
+        border: none;
+        margin: 0;
+        padding: 0;
+        font-size: 100%;
+        outline: 1px dashed gray;
+        &:focus,
+        &:hover {
+            outline: 1px solid gray;
+        }
+    }
+    .login-form-buttons {
+        display: flex;
+        position: relative;
+        align-items: center;
+        margin-top: 1.5em;
+        align-self: flex-end;
+        button {
+            position: relative;
+            --spin: 2.5s fancy-border linear infinite;
+            --angle: 45deg;
+
+            &::before {
+                content: "";
+                display: block;
+                position: absolute;
+                border-radius: 6px;
+                top: -2px;
+                right: -2px;
+                bottom: -2px;
+                left: -2px;
+                z-index: -1;
+                background-image: conic-gradient(from var(--angle), red, orange, yellow, green, cyan, violet, red);
+            }
+            &::after {
+                content: "";
+                display: block;
+                position: absolute;
+                border-radius: 6px;
+                top: -2px;
+                right: -2px;
+                bottom: -2px;
+                left: -2px;
+                z-index: -1;
+                background-color: #c0c0c0;
+            }
+            background-color: #00008b00;
+            border: none;
+            background-color: darkblue;
+            color: #c0c0c0;
+            border-radius: 6px;
+            padding: 0.5rem;
+            font-size: 100%;
+            outline: none;
+            cursor: pointer;
+            &:focus,
+            &:hover,
+            &:disabled {
+                background-color: #000000f0;
+                color: #ffffff;
+                &::before {
+                    filter: blur(10px);
+                }
+                &::after {
+                    background-image: conic-gradient(from var(--angle), red, orange, yellow, green, cyan, violet, red);
+                }
+            }
+            &:disabled {
+                cursor: wait;
+                color: #aaaaaa;
+
+                &::before {
+                    animation: 2.5s fancy-border linear infinite;
+                }
+                &::after {
+                    animation: 2.5s fancy-border linear infinite;
+                }
+                box-shadow: none;
+            }
+        }
+    }
+}
+
+@property --angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes fancy-border {
+    from {
+        --angle: 45deg;
+    }
+    to {
+        --angle: 405deg;
+    }
+}
