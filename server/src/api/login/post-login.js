@@ -21,9 +21,7 @@ export const postLogin = async (req, res, next) => {
             roles: user.roles,
             isAdmin: user.isAdmin,
         };
-        setTimeout(() => {
-            res.send({ notes: user.notes });
-        }, 3000);
+        res.send({ notes: user.notes });
     } catch (error) {
         if (error.message === 'fail-login') {
             res.sendStatus(401);

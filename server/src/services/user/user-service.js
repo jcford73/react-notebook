@@ -2,6 +2,7 @@ import { pick } from 'lodash';
 import { hashPassword } from '../../util/hash-password';
 import User from '../../models/user-model';
 import userRepo from '../../repository/users-repository';
+import { addNote } from '../note/note-service'; // eslint-disable-line import/no-cycle
 
 export const getUserById = async (id) => {
     return userRepo.selectUserById(id);
@@ -31,5 +32,6 @@ export const saveUser = async (userData, userId) => {
         roles: [userRole],
     });
     user = await userRepo.saveUser(user);
-    return pick(user, 'id', 'username', 'displayName');
+    user.notes = [await addNote({ title: 'My First Note', description: '', body: 'Welcome! Thanks for checking this out!' }, user.id)];
+    return pick(user, 'id', 'username', 'displayName', 'roles', 'notes');
 };

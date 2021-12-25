@@ -13,8 +13,7 @@ const startExpressApp = async () => {
 
     router.use(cors({
         origin: (origin, callback) => {
-            if (origin === 'http://localhost:8080') {
-                console.log('CORS passed');
+            if (!origin || origin === 'http://localhost:8080') {
                 callback(null, true);
             } else {
                 callback(new Error('Not allowed by CORS'));

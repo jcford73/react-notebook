@@ -1,6 +1,6 @@
 import Note from '../../models/note-model';
 import notesRepo from '../../repository/notes-repository';
-import { getUserById } from '../user/user-service';
+import { getUserById } from '../user/user-service'; // eslint-disable-line import/no-cycle
 
 const createSlug = (title) => title && title
     .toLowerCase()
@@ -51,7 +51,7 @@ export const updateNote = async (noteData, userId) => {
         throw Error('invalid-title');
     }
     note = new Note({
-        ...note,
+        id: note.id,
         slug: noteData.slug,
         title: noteData.title,
         ...(noteData.hasOwnProperty('description') && { description: noteData.description }),

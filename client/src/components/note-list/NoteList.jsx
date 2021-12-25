@@ -14,11 +14,11 @@ const NoteList = ({ notes, isOpen, closeNoteList }) => {
                     <FontAwesomeIcon icon={faTimes} />
                 </button>
                 <div id="noteList">
-                    <h2>Notes</h2>
+                    <h2>My Notes</h2>
                     <nav>
                         {Object.values(notes).map((note) => (
                             <NavLink
-                                to={`/note/${note.id}`}
+                                to={`/notes/${note.id}`}
                                 className={({ isActive }) => (isActive ? 'active' : '')}
                                 key={note.id}
                                 onClick={closeNoteList}

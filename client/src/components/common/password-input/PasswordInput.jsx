@@ -7,23 +7,26 @@ const PasswordInput = ({
     placeholder,
     value,
     onChange,
+    onBlur,
     error,
-}) => (
-    <div className="password-input-component">
-        { label && (<label htmlFor={name}>{label}</label>)}
-        <div className="password-input-wrapper">
-            <input
-                type="password"
-                name={name}
-                label={label}
-                onChange={onChange}
-                placeholder={placeholder}
-                value={value}
-                error={error}
-            />
+}) => {
+    return (
+        <div className="password-input-component">
+            { label && (<label htmlFor={name}>{label}</label>)}
+            <div className="password-input-wrapper">
+                <input
+                    type="password"
+                    name={name}
+                    label={label}
+                    onChange={onChange}
+                    onBlur={onBlur}
+                    placeholder={placeholder}
+                    value={value}
+                />
+            </div>
+            {(error && <div className="text-input-error">{error}</div>)}
         </div>
-    </div>
-);
+    );};
 
 PasswordInput.propTypes = {
     name: PropTypes.string.isRequired,
@@ -31,6 +34,7 @@ PasswordInput.propTypes = {
     placeholder: PropTypes.string,
     value: PropTypes.string,
     onChange: PropTypes.func.isRequired,
+    onBlur: PropTypes.func,
     error: PropTypes.string,
 };
 

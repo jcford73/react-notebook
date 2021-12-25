@@ -4,22 +4,56 @@
     right: 0;
     bottom: 0;
     left: 0;
-    overflow-y: auto;
-    font-family: monospace;
-    // min-height: 100vh;
-    // .editor-saved-message {
-    //     position: absolute;
-    //     top: 0;
-    //     left: 0.5rem;
-    //     opacity: 0;
-    //     &.saved {
-    //         opacity: 1;
-    //         transition: opacity 0s;
-    //     }
-    //     transition: opacity 0.5s;
-    // }
-    outline: none;
-    padding: 0 1rem;
-    // position: relative;
-    // width: 100%;
+    overflow-y: hidden;
+    font-family: "Source Code Pro", monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+    .meta {
+        padding: 0.25rem 1rem;
+
+        .text-input-component {
+            display: flex;
+            .text-input-wrapper {
+                flex-grow: 1;
+                display: flex;
+                justify-content: stretch;
+                input {
+                    flex-grow: 1;
+                    border: 1px solid transparent;
+                    margin: -1px;
+                    outline: none;
+                    background: none;
+                    font: inherit;
+                    &:focus {
+                        border: 1px solid #e0e0e0;
+                        background: #ffffff;
+                    }
+                }
+            }
+            &.note-title {
+                font-size: 120%;
+                font-weight: bold;
+            }
+            &.note-description {
+                padding-top: 0;
+                padding-left: 1rem;
+                font-size: 80%;
+            }
+        }
+
+        &:not(:focus-within):not(:hover)
+            .note-description
+            input:placeholder-shown {
+            display: none;
+        }
+    }
+
+    div[contentEditable] {
+        flex-grow: 1;
+        border-top: 1px dashed #e0e0e0;
+        outline: none;
+        padding: 0 1rem;
+        overflow: auto;
+    }
 }

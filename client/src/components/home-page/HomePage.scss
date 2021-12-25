@@ -1,10 +1,9 @@
-@import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap");
 .home-page {
     --wh: 0.98181818181818181818181818181818;
     --hw: 1.0182648401826484018264840182648;
     position: relative;
     height: 100vh;
-    background: no-repeat center/contain url(./notebook.png);
+    background: no-repeat top center/contain url(./notebook.png);
     font-family: "Shadows Into Light", cursive;
     font-size: calc(min(12vh, 12vw / var(--wh)) / 2);
     font-weight: bold;
@@ -13,30 +12,43 @@
         content: "This Notebook Belongs To";
         position: absolute;
 
-        --nb-offset-y: 0.04;
-        --min-y: var(--nb-offset-y) * 100vh;
-        --max-y: 50vh - 50vw * var(--hw) + var(--nb-offset-y) * 100vw * var(--hw);
-        top: calc(max(var(--min-y), var(--max-y)));
+        // --nb-offset-y: 0.04;
+        // --min-y: var(--nb-offset-y) * 100vh;
+        // --max-y: 50vh - 50vw * var(--hw) + var(--nb-offset-y) * 100vw * var(--hw);
+        // top: calc(max(var(--min-y), var(--max-y)));
+
+        --wh: 0.98181818181818181818181818181818;
+        --hw: 1.0182648401826484018264840182648;
+
+        --nb-height: min(100vh, 100vw * var(--hw));
+        --nb-title-offset-pct-y: 0.04;
+        --nb-title-offset-y: calc(
+            var(--nb-height) * var(--nb-title-offset-pct-y)
+        );
+        top: var(--nb-title-offset-y);
 
         --nb-offset-x: 0.15;
-        --max-x: calc(50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh)));
+        --max-x: calc(
+            50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh))
+        );
         --min-x: calc(var(--nb-offset-x) * 100vw);
         left: calc(max(var(--min-x), var(--max-x)));
 
-        width: 14em;
+        // width: 14em;
 
         transform: rotateZ(-4deg);
     }
     .login-container {
         position: absolute;
 
-        --nb-offset-y: 0.19;
-        --min-y: var(--nb-offset-y) * 100vh;
-        --max-y: 50vh - 50vw * var(--hw) + var(--nb-offset-y) * 100vw * var(--hw);
-        top: calc(max(var(--min-y), var(--max-y)));
+        --nb-offset-pct-y: 0.19;
+        --nb-height: min(100vh, 100vw * var(--hw));
+        top: calc(var(--nb-offset-pct-y) * var(--nb-height));
 
         --nb-offset-x: 0.24;
-        --max-x: calc(50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh)));
+        --max-x: calc(
+            50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh))
+        );
         --min-x: calc(var(--nb-offset-x) * 100vw);
         left: calc(max(var(--min-x), var(--max-x)));
 
@@ -47,29 +59,35 @@
         transform: rotateZ(-4deg);
     }
     img {
+        --wh: 0.98181818181818181818181818181818;
+        --hw: 1.0182648401826484018264840182648;
+
         position: absolute;
         opacity: 0.9;
 
-        --nb-offset-y: 0.05;
-        --min-y: var(--nb-offset-y) * 100vh;
-        --max-y: 50vh - 50vw * var(--hw) + var(--nb-offset-y) * 100vw * var(--hw);
-        bottom: calc(max(var(--min-y), var(--max-y)));
+        --nb-offset-pct-y: 0.05;
+        --nb-height: min(100vh, 100vw * var(--hw));
+        bottom: calc(
+            100vh - var(--nb-height) + var(--nb-height) * var(--nb-offset-pct-y)
+        );
 
         --nb-offset-x: 0.14;
-        --max-x: calc(50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh)));
+        --max-x: calc(
+            50vw - 50vh * var(--wh) + (var(--nb-offset-x) * 100vh * var(--wh))
+        );
         --min-x: calc(var(--nb-offset-x) * 100vw);
         left: calc(max(var(--min-x), var(--max-x)));
 
-        --nb-width: 0.5;
-        --max-w: calc(var(--nb-width) * 100vh * var(--wh));
-        --min-w: calc(var(--nb-width) * 100vw);
+        --nb-img-width: 0.5;
+        --max-w: calc(var(--nb-img-width) * 100vh * var(--wh));
+        --min-w: calc(var(--nb-img-width) * 100vw);
         width: min(var(--max-w), var(--min-w));
-        transform: rotateZ(-4deg);
 
-        --nb-height: 0.4;
-        --max-h: calc(var(--nb-height) * 100vh * var(--h));
-        --min-h: calc(var(--nb-height) * 100vw);
+        --nb-img-height: 0.4;
+        --max-h: calc(var(--nb-img-height) * 100vh * var(--h));
+        --min-h: calc(var(--nb-img-height) * 100vw);
         height: min(var(--max-h), var(--min-h));
+
         transform: rotateZ(-4deg);
     }
 }

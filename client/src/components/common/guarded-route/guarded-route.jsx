@@ -1,12 +1,12 @@
 import { Navigate, Outlet } from 'react-router-dom';
 import { PropTypes } from 'prop-types';
 
-const PrivateRoute = ({isLoggedIn}) => {
-    return isLoggedIn ? <Outlet /> : <Navigate to="/" />;
+const PrivateRoute = ({allowed}) => {
+    return allowed ? <Outlet /> : <Navigate to="/" />;
 };
 
 PrivateRoute.propTypes = {
-    isLoggedIn: PropTypes.bool.isRequired,
+    allowed: PropTypes.bool.isRequired,
 };
 
 export default PrivateRoute;

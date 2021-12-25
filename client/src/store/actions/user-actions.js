@@ -1,4 +1,4 @@
-import { postLogin, postLogout } from '../../api/auth';
+import { postLogin, postLogout, postUser } from '../../api/auth';
 import actions from './action-types';
 
 export const login = (credentials) => {
@@ -35,4 +35,11 @@ export const logOut = () => {
 
 export const logoutSuccess = () => {
     return { type: actions.LOGOUT_SUCCESS };
+};
+
+export const signUp = (newUser) => {
+    return async (dispatch, getState) => {
+        const {notes} = await postUser(getState, dispatch, newUser);
+        dispatch(loginSuccess(notes));
+    };
 };

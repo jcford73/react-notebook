@@ -1,4 +1,4 @@
-import { jwtReceived } from '../store/actions/user_actions';
+import { jwtReceived } from '../store/actions/user-actions';
 
 export const apiUrl = process.env.API_URL;
 

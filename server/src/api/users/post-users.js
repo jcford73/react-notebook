@@ -19,11 +19,13 @@ const validators = validation(
 export const postUser = async (req, res, next) => {
     try {
         const user = await saveUser(req.body);
-        if (user) {
-            res.send(user);
-            return;
-        }
-        next(Error('Failed to save user.'));
+        req.user = {
+            id: user.id,
+            username: user.username,
+            displayName: user.displayName,
+            roles: user.roles,
+        };
+        res.send({ notes: user.notes });
     } catch (error) {
         if (error.message === 'username-conflict') {
             res.status(400).send([

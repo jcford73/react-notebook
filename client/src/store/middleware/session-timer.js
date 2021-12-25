@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify';
 import actionTypes from '../actions/action-types';
-import { logOut } from '../actions/user_actions';
+import { logOut } from '../actions/user-actions';
 
 let timeout;
 

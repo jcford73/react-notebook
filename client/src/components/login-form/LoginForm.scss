@@ -24,6 +24,7 @@
     }
     .login-form-buttons {
         display: flex;
+        flex-direction: column;
         position: relative;
         align-items: center;
         margin-top: 1.5em;
@@ -32,6 +33,17 @@
             position: relative;
             --spin: 2.5s fancy-border linear infinite;
             --angle: 45deg;
+            font: inherit;
+            background-color: #00008b00;
+            border: none;
+            background-color: darkblue;
+            color: #c0c0c0;
+            border-radius: 6px;
+            padding: 0 .5em .1em .5em;
+            font-size: 80%;
+            outline: none;
+            text-transform: uppercase;
+            cursor: pointer;
 
             &::before {
                 content: "";
@@ -57,15 +69,6 @@
                 z-index: -1;
                 background-color: #c0c0c0;
             }
-            background-color: #00008b00;
-            border: none;
-            background-color: darkblue;
-            color: #c0c0c0;
-            border-radius: 6px;
-            padding: 0.5rem;
-            font-size: 100%;
-            outline: none;
-            cursor: pointer;
             &:focus,
             &:hover,
             &:disabled {
@@ -89,6 +92,14 @@
                     animation: 2.5s fancy-border linear infinite;
                 }
                 box-shadow: none;
+            }
+        }
+        .sign-up {
+            font-size: 50%;
+            text-decoration: none;
+            color: #c0c0c0;
+            &:hover, &:active {
+                color: yellow;
             }
         }
     }

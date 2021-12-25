@@ -4,12 +4,12 @@ import { toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { connect } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
 
 import PasswordInput from '../common/password-input/PasswordInput';
 import TextInput from '../common/text-input/TextInput';
 import './LoginForm.scss';
-import { login } from '../../store/actions/user_actions';
+import { login } from '../../store/actions/user-actions';
+import { Link } from 'react-router-dom';
 
 const LoginForm = ({
     errors = {},
@@ -17,15 +17,10 @@ const LoginForm = ({
 }) => {
     const [credentials, setCredentials] = useState({ username: 'johncford@gmail.com', password: 'Test@1234' });
     const [loginPending, setLoginPending] = useState();
-    const navigate = useNavigate();
     const onSubmit = async (event) => {
         event.preventDefault();
         setLoginPending(true);
         actions.login(credentials)
-            .then(() => {
-                setLoginPending(false);
-                navigate('/notes');
-            })
             .catch(() => {
                 setLoginPending(false);
                 toast('Username or Password was invalid.', { type: 'error', position: 'bottom-right', theme: 'colored' });
@@ -64,6 +59,7 @@ const LoginForm = ({
                     >
                         Log In
                     </button>
+                    <Link to="/sign-up" className='sign-up'>sign up</Link>
                 </div>
             </div>
         </form>

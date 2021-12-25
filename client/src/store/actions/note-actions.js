@@ -35,23 +35,25 @@ export const getNoteSuccess = (note) => {
     return {type: actions.GET_NOTE_SUCCESS, note };
 };
 
-// export function loadNotes() {
-//     return function (dispatch) {
-//         dispatch(loadNotesStarted());
-//         getNotes()
-//             .then(notes => dispatch(loadNotesSuccess(notes)))
-//             .catch(error => dispatch(loadNotesFailure(error)));
-//     };
-// }
+export const addNote = () => {
+    return async (dispatch, getState) => {
+        const note = await noteApi.postNote(getState, dispatch, {title: 'Unnamed Note'});
+        dispatch(addNoteSuccess(note));
+        return note;
+    };
+};
 
-// export function loadNotesStarted() {
-//     return { type: actions.LOAD_NOTES_STARTED };
-// }
+export const addNoteSuccess = (note) => {
+    return {type: actions.ADD_NOTE_SUCCESS, note};
+};
 
-// export function loadNotesSuccess(notes) {
-//     return { type: actions.LOAD_NOTES_SUCCESS, notes};
-// }
+export const deleteNote = (noteId) => {
+    return async (dispatch, getState) => {
+        await noteApi.deleteNote(getState, dispatch, noteId);
+        dispatch(deleteNoteSuccess(noteId));
+    };
+};
 
-// export function loadNotesFailure(error) {
-//     return { type: actions.LOAD_NOTES_FAILURE, error};
-// }
+export const deleteNoteSuccess = (noteId) => {
+    return {type: actions.DELETE_NOTE_SUCCESS, noteId};
+};

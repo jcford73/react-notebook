@@ -12,7 +12,7 @@ export const selectAllUsers = async (select) => {
 
 export const selectUserById = async (id, select) => {
     return db(User, async ({ repo }) => {
-        const [user] = await repo.findByIds([id], select);
+        const [user] = await repo.find({ where: { id }, select });
         return user;
     });
 };

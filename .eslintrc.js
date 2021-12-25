@@ -20,5 +20,6 @@ module.exports = {
         'no-console': 'off',
         'no-debugger': 'off',
         'no-unused-vars': 'warn',
+        'no-prototype-builtins': 'off'
     },
 };

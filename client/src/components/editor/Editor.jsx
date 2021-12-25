@@ -7,14 +7,16 @@ import { throttle } from 'throttle-debounce';
 
 import { updateNote, getNote } from '../../store/actions/note-actions';
 import './Editor.scss';
+import TextInput from '../common/text-input/TextInput';
+import { forwardRef } from 'react';
 
-const Editor = ({ id, note, ...actions }) => {
-    const [editorState, setEditorState] = useState({});
+const Editor = forwardRef(({ id, note, ...actions }, editor) => {
+    const [noteState, setNoteState] = useState({});
 
     useEffect(async () => {
-        setEditorState({
-            ...editorState,
-            value: '',
+        setNoteState({
+            ...noteState,
+            body: '',
         });
         await actions.getNote(id);
     }, [id]);
@@ -23,54 +25,86 @@ const Editor = ({ id, note, ...actions }) => {
 
     useEffect(() => {
     // eslint-disable-next-line no-underscore-dangle
-        if (editorState.noteId !== note.id) {
-            setEditorState({
-                ...editorState,
+        if (note.id !== noteState.id) {
+            setNoteState({
+                ...noteState,
                 // eslint-disable-next-line no-underscore-dangle
-                ...{ value: sanitize(note.body) },
-                ...(note.body && { noteId: note.id }),
+                id: note.id,
+                title: note.title || '',
+                description: note.description || '',
+                ...(note.hasOwnProperty('body') && {body: sanitize(note.body)}),
             });
         }
     }, [note]);
 
     useEffect(() => {
-        if (editorState.saved) {
+        if (noteState.saved) {
             setTimeout(() => {
-                setEditorState({
-                    ...editorState,
+                setNoteState({
+                    ...noteState,
                     saved: false,
                 });
             }, 100);
         }
-    }, [editorState.saved]);
+    }, [noteState.saved]);
 
-    const onInput = useMemo(() => throttle(2000, false, (event) => {
-        actions.updateNote({ ...note, body: event.target.innerHTML })
-            .then((response) => {
-                if (response !== 'throttled') {
-                    setEditorState({
-                        ...editorState,
-                        saved: true,
-                    });
-                    //   toast('saved!');
-                }
-            })
+    const saveNote = useMemo(() => throttle(2000, false, (note) => {
+        actions.updateNote(note)
             .catch((error) => {
                 toast.error(error);
             });
-    }), [editorState.noteId]);
+    }), [noteState.id]);
+
+    const onMetaChange = ({target:{name:field, value}}) => {
+        if (field === 'title' && !value) {
+            toast.warn('Title cannot be empty', {position:'bottom-right'});
+            return;
+        }
+        const noteData = {
+            ...noteState,
+            [field]: value
+        };
+        setNoteState(noteData);
+        saveNote(noteData);
+    };
+
+    const onInput = (event) => {
+        saveNote({
+            ...noteState,
+            body: event.target.innerHTML,
+        });
+    };
 
     return (
-    // eslint-disable-next-line react/no-danger
-        <div className="editor" contentEditable="true" onInput={onInput} spellCheck="false" dangerouslySetInnerHTML={{ __html: editorState.value }} />
+        <div className="editor">
+            <div className="meta">
+                <TextInput
+                    name="title"
+                    placeholder="note title"
+                    onChange={onMetaChange}
+                    className="note-title"
+                    value={noteState.title}
+                />
+                <TextInput
+                    name="description"
+                    placeholder="enter a description"
+                    onChange={onMetaChange}
+                    className="note-description"
+                    value={noteState.description}
+                />
+            </div>
+            <div ref={editor} contentEditable="true" onInput={onInput} spellCheck="false" dangerouslySetInnerHTML={{ __html: noteState.body }} />
+        </div>
     );
-};
+});
+Editor.displayName = 'Editor';
 
 Editor.propTypes = {
     id: PropTypes.string.isRequired,
     note: PropTypes.shape().isRequired,
     updateNote: PropTypes.func.isRequired,
     getNote: PropTypes.func.isRequired,
+    editor: PropTypes.object,
 };
 
 const mapStateToProps = (state, ownProps) => ({
@@ -82,4 +116,4 @@ const mapDispatchToProps = {
     getNote,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Editor);
+export default connect(mapStateToProps, mapDispatchToProps,null,{forwardRef: true})(Editor);

@@ -39,6 +39,7 @@ module.exports = {
                 'no-debugger': 'off',
                 'no-useless-catch': 'off',
                 'no-unused-vars': 'warn',
+                'no-prototype-builtins': 'off',
                 semi: ['warn', 'always'],
             },
             settings: {
