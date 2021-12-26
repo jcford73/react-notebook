@@ -67,9 +67,14 @@
             border-bottom-right-radius: unset;
             border-bottom-left-radius: unset;
             .note-list {
+                position: unset;
+                top: unset;
+                transform: unset;
                 min-width: unset;
                 max-width: unset;
-                // transform: unset !important;
+                border-top-left-radius: unset;
+                border-bottom-left-radius: unset;
+                z-index: unset;
             }
         }
     }

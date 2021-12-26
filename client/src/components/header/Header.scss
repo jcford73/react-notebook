@@ -25,6 +25,12 @@
         }
     }
     .toggle-editor-size {
+        button {
+            font-weight: bold;
+            svg {
+                margin: 0 0.5em;
+            }
+        }
     }
     .new-note {
         white-space: nowrap;

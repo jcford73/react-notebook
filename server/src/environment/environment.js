@@ -31,6 +31,11 @@ export const jwtConfig = {
     impersonateKey: process.env.NOTEBOOK_JWT_IMPERSONATE_KEY || '',
 };
 
+export const corsConfig = {
+    whitelist: (process.env.NOTEBOOK_CORS_WHITELIST || 'http://localhost:8080').split(/\s+/),
+    corsBypassKey: process.env.NOTEBOOK_CORS_BYPASS_KEY,
+};
+
 export default {
     db: dbConfig,
     api: apiConfig,

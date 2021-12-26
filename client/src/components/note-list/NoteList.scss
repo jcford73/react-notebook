@@ -9,6 +9,7 @@
 .notebook-expanded {
     .drawer {
         background-color: #ffffff;
+        display: none;
     }
     .drawer-container.open {
         .close-button {
@@ -30,6 +31,7 @@
         bottom: 0;
 
         .drawer {
+            display: block;
             position: fixed;
             top: 0;
             left: 0;

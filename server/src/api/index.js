@@ -1,6 +1,6 @@
 import express from 'express';
 import cors from 'cors';
-import { apiConfig } from '../environment/environment';
+import { apiConfig, corsConfig } from '../environment/environment';
 import { jwtRefresh } from './middleware/jwt';
 import globalErrorHandler from './middleware/error-handler';
 import login from './login';
@@ -11,16 +11,19 @@ const startExpressApp = async () => {
     const app = express();
     const router = express.Router();
 
-    router.use(cors({
+    router.use((req, res, next) => cors({
         origin: (origin, callback) => {
-            if (!origin || origin === 'http://localhost:8080') {
+            if (corsConfig.whitelist.includes(origin)) {
+                callback(null, true);
+            } else if (!origin && req.header('X-CORS-Bypass-Key') === corsConfig.corsBypassKey) {
                 callback(null, true);
             } else {
                 callback(new Error('Not allowed by CORS'));
             }
         },
         optionsSuccessStatus: 200,
-    }));
+    })(req, res, next));
+
     router.use(jwtRefresh);
     router.use(express.json({ strict: true }));
 
