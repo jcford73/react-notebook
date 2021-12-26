@@ -4,7 +4,7 @@ export const dbConfig = {
     user: process.env.NOTEBOOK_DB_USER || 'root',
     password: process.env.NOTEBOOK_DB_PASSWORD || 'root',
     database: process.env.NOTEBOOK_DB_DATABASE || 'notebook',
-    synchronize: true,
+    synchronize: process.env.NOTEBOOK_DB_SYNCHRONIZE === 'true' || false,
 };
 
 export const apiConfig = {

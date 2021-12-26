@@ -3,12 +3,13 @@
     "version": "1.0.0",
     "main": "main.js",
     "scripts": {
-        "prestart": "npm run build",
-        "start": "node --enable-source-maps ./dist/main",
+        "start": "node ./dist/main",
+        "start:dev": "node start -- --enable-source-maps",
         "start:serve": "wait-on ./dist/main.js && nodemon --enable-source-maps --inspect dist/main",
         "clean": "rm -rf dist",
-        "build": "npm run clean && babel ./src --out-dir dist --copy-files --source-maps",
-        "build:watch": "npm run build -- --watch",
+        "build": "npm run clean && babel ./src --out-dir dist --copy-files",
+        "build:dev": "npm run build -- --source-maps",
+        "build:watch": "npm run build:dev -- --watch",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "",
