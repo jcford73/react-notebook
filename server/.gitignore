@@ -1,5 +1,3 @@
-node_modules
-dist
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*

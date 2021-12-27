@@ -10,9 +10,10 @@ const store = configureStore();
 const appHost = document.createElement('div');
 appHost.className = 'app-root';
 document.body.appendChild(appHost);
+
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter>
+        <BrowserRouter basename='/notebook'>
             <App />
         </BrowserRouter>
     </Provider>, //

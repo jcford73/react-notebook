@@ -1,0 +1,43 @@
+version: "3.8"
+
+services:
+    notebook-server:
+        container_name: notebook-server
+        image: jcford73/notebook-server
+        ports:
+            - "10001:10001"
+        expose:
+            - 10001
+        networks:
+          - notebook-network
+        environment:
+          - NOTEBOOK_API_HOST=0.0.0.0
+          - NOTEBOOK_API_PORT=10001
+          - NOTEBOOK_DB_HOST=notebook-postgres
+          - NOTEBOOK_REDIS_HOST=notebook-redis
+        depends_on:
+            - db
+            - redis
+    db:
+        container_name: notebook-postgres
+        image: postgres:13-alpine
+        restart: always
+        environment:
+            POSTGRES_USER: root
+            POSTGRES_PASSWORD: root
+        ports:
+            - "5432:5432"
+        networks:
+          - notebook-network
+    redis:
+        container_name: notebook-redis
+        image: redis:alpine
+        restart: always
+        ports:
+            - "6379:6379"
+        networks:
+          - notebook-network
+
+networks:
+  notebook-network:
+    driver: bridge

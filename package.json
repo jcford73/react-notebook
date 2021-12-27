@@ -1,7 +1,7 @@
 {
-    "name": "react-notepad",
+    "name": "react-notebook",
     "version": "1.0.0",
-    "description": "JC's React Notepad Project",
+    "description": "JC's React Notebook Project",
     "private": true,
     "author": "",
     "license": "MIT",

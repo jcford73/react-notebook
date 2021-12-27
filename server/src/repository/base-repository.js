@@ -22,25 +22,32 @@ const createDb = async () => {
 };
 
 export const connectDb = async () => {
+    const dbConfig = {
+        type: 'postgres',
+        host: environment.db.host,
+        port: environment.db.port,
+        username: environment.db.user,
+        password: environment.db.password,
+        database: environment.db.database,
+        synchronize: environment.db.synchronize,
+        entities: [
+            UserEntity,
+            NoteEntity,
+            RoleEntity,
+        ],
+        logging: ['query'],
+    };
     try {
-        await createConnection({
-            type: 'postgres',
-            host: environment.db.host,
-            port: environment.db.port,
-            username: environment.db.user,
-            password: environment.db.password,
-            database: environment.db.database,
-            synchronize: environment.db.synchronize,
-            entities: [
-                UserEntity,
-                NoteEntity,
-                RoleEntity,
-            ],
-        });
+        await createConnection(dbConfig);
     } catch (error) {
         if (error.code === PG_INVALID_CATALOG_NAME) {
             await createDb();
-            await connectDb();
+            const x = {
+                ...dbConfig,
+                synchronize: true,
+            };
+            const connection = await createConnection(x);
+            await connection.synchronize();
             return;
         }
         throw error;

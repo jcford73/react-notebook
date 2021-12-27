@@ -1,5 +1,5 @@
 {
-    "name": "react-notepad-client",
+    "name": "react-notebook-client",
     "version": "1.0.0",
     "description": "",
     "main": "index.jsx",
@@ -51,6 +51,7 @@
         "mini-css-extract-plugin": "^2.4.5",
         "openbrowser": "^1.0.2",
         "redux-immutable-state-invariant": "^2.1.0",
+        "resolve-url-loader": "^4.0.0",
         "sass": "^1.45.0",
         "sass-loader": "^12.4.0",
         "webpack": "^5.65.0",

@@ -2,9 +2,7 @@ import { createClient } from 'redis';
 import { redisConfig } from '../../environment/environment';
 
 const redisClient = (async () => {
-    const client = createClient({
-        socket: { redisConfig },
-    });
+    const client = createClient(redisConfig);
 
     // eslint-disable-next-line no-console
     client.on('error', (err) => console.log('Redis Client Error', err));

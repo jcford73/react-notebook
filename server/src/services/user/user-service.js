@@ -28,7 +28,7 @@ export const saveUser = async (userData, userId) => {
     user = new User({
         ...user,
         ...userData,
-        ...hashPassword(userData.password),
+        password: hashPassword(userData.password),
         roles: [userRole],
     });
     user = await userRepo.saveUser(user);

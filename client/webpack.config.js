@@ -21,15 +21,19 @@ module.exports = {
         open: false,
     },
     plugins: [
-        new HtmlWebpackPlugin({ favicon: './public/favicon.ico' }), //
+        new HtmlWebpackPlugin({
+            favicon: './public/favicon.ico',
+            title: 'JC\'s Notebook',
+            base: '/notebook/',
+        }), //
         new MiniCssExtractPlugin(),
         new ESLintWebpackPlugin({ context: './src', extensions: ['js', 'jsx'], formatter: 'stylish' }),
         new webpack.DefinePlugin({
-            'process.env.API_URL': JSON.stringify('http://localhost:10001')
+            'process.env.API_URL': JSON.stringify('http://jcford.me/api')
         })
     ],
     output: {
-        publicPath: '/',
+        publicPath: '/notebook/',
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,
@@ -49,6 +53,7 @@ module.exports = {
                         loader: 'css-loader',
 
                     },
+                    'resolve-url-loader',
                     'sass-loader',
                 ],
             },
