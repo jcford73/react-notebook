@@ -32,7 +32,12 @@ const Editor = forwardRef(({ id, note, ...actions }, editor) => {
                 id: note.id,
                 title: note.title || '',
                 description: note.description || '',
-                ...(note.hasOwnProperty('body') && {body: sanitize(note.body)}),
+                body: sanitize(note.body),
+            });
+        } else if (!noteState.body && note.body) {
+            setNoteState({
+                ...noteState,
+                body: sanitize(note.body),
             });
         }
     }, [note]);

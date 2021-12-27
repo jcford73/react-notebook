@@ -24,16 +24,16 @@ module.exports = {
         new HtmlWebpackPlugin({
             favicon: './public/favicon.ico',
             title: 'JC\'s Notebook',
-            base: '/notebook/',
+            base: '/',
         }), //
         new MiniCssExtractPlugin(),
         new ESLintWebpackPlugin({ context: './src', extensions: ['js', 'jsx'], formatter: 'stylish' }),
         new webpack.DefinePlugin({
-            'process.env.API_URL': JSON.stringify('http://jcford.me/api')
+            'process.env.API_URL': JSON.stringify('http://localhost:10001')
         })
     ],
     output: {
-        publicPath: '/notebook/',
+        publicPath: '/',
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'dist'),
         clean: true,

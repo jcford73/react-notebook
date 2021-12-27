@@ -13,7 +13,7 @@ document.body.appendChild(appHost);
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter basename='/notebook'>
+        <BrowserRouter>
             <App />
         </BrowserRouter>
     </Provider>, //
