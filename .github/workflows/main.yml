@@ -23,7 +23,8 @@ jobs:
         uses: actions/checkout@main
         
       - name: Generate package
-        run: zip -r deployment-package.zip server/* -x "**node_modules**"
+        working-directory: server
+        run: zip -r deployment-package.zip * -x "**node_modules**"
         
       - name: Get timestamp
         uses: gerred/actions/current-time@master
