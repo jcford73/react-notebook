@@ -8,7 +8,7 @@
     "scripts": {
         "start:docker": "docker compose -f docker-compose.dev.yml up -d",
         "start:conc": "concurrently -n server-build,server -c blueBright,greenBright \"npm run build:watch\" \"npm run start:serve\"",
-        "start": "node ./dist/main",
+        "xxstart": "node ./dist/main",
         "start:dev": "node start -- --enable-source-maps",
         "start:serve": "wait-on ./dist/main.js && nodemon --enable-source-maps --inspect -L dist/main",
         "start:env": "docker-compose -f docker-compose.env.yml up -d",
