@@ -2,6 +2,9 @@
     "name": "react-notepad-server",
     "version": "1.0.0",
     "main": "main.js",
+    "engines": {
+        "node": ">=16"
+    },
     "scripts": {
         "start:docker": "docker compose -f docker-compose.dev.yml up -d",
         "start:conc": "concurrently -n server-build,server -c blueBright,greenBright \"npm run build:watch\" \"npm run start:serve\"",
