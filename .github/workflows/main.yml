@@ -48,4 +48,4 @@ jobs:
           application_name: notebook-server
           environment_name: Notebookserver-env
           version_label: "notebook-server-deployment-${{ steps.format-time.outputs.replaced }}"
-          deployment_package: deployment-package.zip
+          deployment_package: server/deployment-package.zip
