@@ -1,0 +1,50 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy to AWS Elastic Beanstalk
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout latest repo
+        uses: actions/checkout@main
+        
+      - name: Generate package
+        run: zip -r deployment-package.zip * -x "**node_modules**"
+        
+      - name: Get timestamp
+        uses: gerred/actions/current-time@master
+        id: current-time
+        
+      - name: Format timestamp
+        uses: frabert/replace-string-action@master
+        id: format-time
+        with:
+          pattern: '[:\.]+'
+          string: '${{ steps.current-time.outputs.time }}'
+          replace-with: '-'
+          flags: 'g'
+          
+      - name: Deploy
+        uses: einaregilsson/beanstalk-deploy@v20
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_KEY }}
+          region: us-west-1
+          application_name: notebook-server
+          environment_name: Notebookserver-env
+          version_label: "notebook-server-deployment-${{ steps.format-time.outputs.replaced }}"
+          deployment_package: deployment-package.zip
