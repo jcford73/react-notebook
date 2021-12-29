@@ -1,0 +1,32 @@
+version: "3.8"
+
+services:
+    notebook-server:
+        container_name: notebook-server
+        restart: always
+        build:
+            context: .
+            dockerfile: Dockerfile.dev
+        ports:
+            - "10001:10001"
+            - "9229:9229"
+        networks:
+          - notebook-network
+        environment:
+          - NOTEBOOK_API_HOST=0.0.0.0
+          - NOTEBOOK_API_PORT=10001
+          - NOTEBOOK_DB_HOST=notebook-postgres
+          - NOTEBOOK_REDIS_HOST=notebook-redis
+        depends_on:
+            - db
+            - redis
+        volumes:
+          - .:/app
+          - /app/node_modules
+        stdin_open: true
+        tty: true
+
+networks:
+  notebook-network:
+    external: true
+    driver: bridge

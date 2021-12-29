@@ -4,6 +4,7 @@ export const dbConfig = {
     user: process.env.NOTEBOOK_DB_USER || 'root',
     password: process.env.NOTEBOOK_DB_PASSWORD || 'root',
     database: process.env.NOTEBOOK_DB_DATABASE || 'notebook',
+    maintenanceDatabase: process.env.NOTEBOOK_DB_MAINTENANCE_DATABASE || 'postgres',
     synchronize: process.env.NOTEBOOK_DB_SYNCHRONIZE === 'true' || false,
 };
 

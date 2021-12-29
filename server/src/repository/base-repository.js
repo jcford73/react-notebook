@@ -14,6 +14,7 @@ const createDb = async () => {
         port: environment.db.port,
         username: environment.db.user,
         password: environment.db.password,
+        database: environment.db.maintenanceDatabase,
         logging: ['query'],
     });
     await connection.query(`CREATE DATABASE ${environment.db.database}`);

@@ -1,0 +1,15 @@
+FROM node:alpine AS node_modules
+
+WORKDIR /app
+
+COPY package*.json ./
+
+RUN npm install
+
+FROM node_modules
+
+ENV NOTEBOOK_JWT_IMPERSONATE_KEY=asdf1234lkjh
+ENV NOTEBOOK_CORS_BYPASS_KEY=7f9a446d5b9e68aeb95fd8d20905e2971145de750f46060b1b08f67103d8c1120555af46f13dfac59abbedab06ededf325cc4c9f5b4c1b1e878b1f5be9e8e929
+
+ENTRYPOINT ["npm", "run", "start:conc"]
+VOLUME /app

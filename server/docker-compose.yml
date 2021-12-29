@@ -3,41 +3,18 @@ version: "3.8"
 services:
     notebook-server:
         container_name: notebook-server
-        image: jcford73/notebook-server
+        restart: unless-stopped
+        build:
+            context: .
+            dockerfile: Dockerfile
         ports:
-            - "10001:10001"
-        expose:
-            - 10001
-        networks:
-          - notebook-network
+            - "80:80"
         environment:
           - NOTEBOOK_API_HOST=0.0.0.0
-          - NOTEBOOK_API_PORT=10001
-          - NOTEBOOK_DB_HOST=notebook-postgres
-          - NOTEBOOK_REDIS_HOST=notebook-redis
-        depends_on:
-            - db
-            - redis
-    db:
-        container_name: notebook-postgres
-        image: postgres:13-alpine
-        restart: always
-        environment:
-            POSTGRES_USER: root
-            POSTGRES_PASSWORD: root
-        ports:
-            - "5432:5432"
-        networks:
-          - notebook-network
-    redis:
-        container_name: notebook-redis
-        image: redis:alpine
-        restart: always
-        ports:
-            - "6379:6379"
-        networks:
-          - notebook-network
-
-networks:
-  notebook-network:
-    driver: bridge
+          - NOTEBOOK_API_PORT=80
+          - NOTEBOOK_DB_HOST=notebook-db.crrfthqir0s7.us-west-1.rds.amazonaws.com
+          - NOTEBOOK_DB_USER=notebook
+          - NOTEBOOK_DB_PASSWORD=GmApjA8ssTCj8KjMIR8N
+          - NOTEBOOK_DB_DATABASE=notebook
+          - NOTEBOOK_DB_MAINTENANCE_DATABASE=postgres
+          - NOTEBOOK_REDIS_HOST=notebook-redis.774mfm.0001.usw1.cache.amazonaws.com
