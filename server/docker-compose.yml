@@ -2,9 +2,8 @@ version: "3.8"
 
 services:
     notebook-server:
-        container_name: notebook-server
+        image: jcford73/notebook-server
         restart: unless-stopped
-        build: '.'
         ports:
             - "80:80"
         environment:
