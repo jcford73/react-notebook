@@ -19,6 +19,19 @@
     "author": "",
     "license": "ISC",
     "description": "",
+    "babel": {
+        "presets": [
+            [
+                "@babel/preset-env",
+                {
+                    "targets": {
+                        "node": "current"
+                    }
+                }
+            ]
+        ],
+        "plugins": []
+    },
     "dependencies": {
         "core-js": "^3.20.0",
         "cors": "^2.8.5",
